@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(1100px 600px at 12% 12%, rgba(191, 122, 11, 0.35), transparent 60%),
+                radial-gradient(900px 520px at 88% 18%, rgba(30, 178, 211, 0.35), transparent 55%),
+                linear-gradient(180deg, #f8fafc, #eef2ff);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .wrap {
+            width: min(1060px, 100%);
+            margin: 0 auto;
+            padding: 22px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 14px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .65);
+            border-radius: 18px;
+            padding: 10px 12px;
+            box-shadow: 0 18px 50px rgba(2, 6, 63, .08);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            letter-spacing: .2px;
+        }
+
+        .logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: conic-gradient(from 180deg at 50% 50%, #f59e0b, #ef4444, #8b5cf6, #3b82f6, #10b981, #f59e0b);
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 10px;
+            border-radius: 12px;
+            opacity: 0.85;
+        }
+
+        nav a:hover {
+            background: rgba(141, 182, 202, 0.45);
+            box-shadow: 0 8px 16px rgba(2, 6, 63, .08);
+            opacity: 1;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 18px;
+            margin-top: 14px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .75);
+            border: 1px solid rgba(15, 23, 42, .12);
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 50px rgba(2, 6, 63, .08);
+            padding: 24px;
+            gap: 18px;
+        }
+
+        .hero .left {
+            padding: 22px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .kicker {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            padding: 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .65);
+            font-size: 12.5px;
+            font-weight: 800;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .65);
+            box-shadow: 0 8px 16px rgba(2, 6, 63, .08);
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(2, 6, 23, .12);
+        }
+
+        .chip {
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, .12);
+        }
+
+        .hero .right {
+            position: relative;
+            min-height: 280px;
+        }
+
+        .profile {
+            padding: 22px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 18px;
+            background: conic-gradient(from 180deg at 50% 50%, #f59e0b, #ef4444, #8b5cf6, #3b82f6, #10b981, #f59e0b);
+        }
+
+        .name {
+            display: grid;
+            gap: 8px
+        }
+
+        .name b {
+            font-size: 18px;
+        }
+
+        .name span {
+            font-size: 13px;
+            color: rgba(2, 6, 23, .36);
+        }
+
+        .quick {
+            display: grid;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 18px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .65);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .row small {
+            color: rgba(2, 6, 23, .45);
+        }
+
+        .row strong {
+            font-weight: 800;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .proj {
+            padding: 16px;
+            display: grid;
+            gap: 10px;
+            min-height: 170px;
+        }
+
+        .thum {
+            height: 86px;
+            border-radius: 16px;
+            background:
+                radial-gradient(600px 400px at 20% 20%, rgba(191, 122, 11, 0.25), transparent 60%),
+                radial-gradient(400px 300px at 80% 30%, rgba(30, 178, 211, 0.25), transparent 55%),
+                linear-gradient(180deg, #ffffff, #e0e7ff);
+            border: 1px solid rgba(15, 23, 42, .08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .proj p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(2, 6, 23, .6);
+        }
+
+        .meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .65);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .item {
+            padding: 16px;
+            display: grid;
+            gap: 8px;
+        }
+        .item b {
+            font-size: 16px;
+        }
+        .item span {
+            font-size: 13px;
+            color: rgba(2, 6, 23, .45);
+        }
+        .item p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(2, 6, 23, .6);
+        }
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px;
+        }
+        .lefty {
+            display: grid;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="wrap">
+        <div class="nav">
+            <div class="brand">
+                <div class="logo"></div>
+                <div>İsim Soyisim</div>
+            </div>
+            <nav>
+                <a href="#projeler">Projeler</a>
+                <a href="#deneyim">Deneyim</a>
+                <a href="#iletisim">İletişim</a>
+            </nav>
+            <a href="" class="btn">CV İndir</a>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="hero">
+            <div class="card left">
+                <div class="kicker"><span>Full-Stack Developer • UI odaklı
+                    </span></div>
+                <h1>Ürün gibi görünen
+                    <br>portföy.
+                </h1>
+                <p>Ben <b>İsim Soyisim.</b> Web uygulamaları, API’ler ve modern arayüzler geliştiriyorum. Burada öne
+                    çıkan işlerimi, kullandığım teknolojileri ve iletişim bilgilerimi bulabilirsin.</p>
+                <div class="cta">
+                    <a href="#projeler" class="btn primary">Projeleri İncele</a>
+                    <a href="#iletisim" class="btn ">İletişime geç</a>
+                </div>
+                <div class="chips">
+                    <span class="chip">JavaScript</span>
+                    <span class="chip">React</span>
+                    <span class="chip">Node.js</span>
+                    <span class="chip">CSS</span>
+                    <span class="chip">HTML</span>
+                </div>
+            </div>
+            <aside class="card right">
+                <div class="profile">
+                    <div class="avatar"></div>
+                    <div class="name">
+                        <b>İsim Soyisim</b>
+                        <span>Full-Stack Developer • İstanbul</span>
+                    </div>
+                    <div class="quick">
+                        <div class="row"><small>Uzmanlık</small><strong>Web & API</strong></div>
+                        <div class="row"><small>Odak</small><strong>Performans</strong></div>
+                        <div class="row"><small>İş</small><strong>Freelance/Full-time
+                            </strong></div>
+                    </div>
+                    <div class="cta">
+                        <a href="" class="btn">GitHub</a>
+                        <a href="" class="btn">LinkedIn</a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section id="#projeler">
+            <div class="section-title">
+                <h2>Projeler</h2>
+                <p>Seçilmiş çalışmalar • kısa özet</p>
+            </div>
+            <div class="grid">
+                <article class="card proj">
+                    <div class="thum"></div>
+                    <h3>Proje Adı #1</h3>
+                    <p>Landing + admin panel + API. Kullanıcı yönetimi ve raporlama.
+                    </p>
+                    <div class="meta"><span class="tag">HTML</span>
+                        <div class="meta"><span class="tag">CSS</span>
+                            <div class="meta"><span class="tag">API</span></div>
+                </article>
+                <article class="card proj">
+                    <div class="thum"></div>
+                    <h3>Proje Adı #2
+                    </h3>
+                    <p>Ürün listeleme, filtreleme, ödeme adımı ve e-posta bildirimleri.
+                    </p>
+                    <div class="meta"><span class="tag">UI</span>
+                        <div class="meta"><span class="tag">Backend</span>
+                            <div class="meta"><span class="tag">SQL</span></div>
+                </article>
+                <article class="card proj">
+                    <div class="thum"></div>
+                    <h3>Proje Adı #3
+                    </h3>
+                    <p>Dashboard tasarımı: kartlar, grafik alanı, performans metrikleri.
+                    </p>
+                    <div class="meta"><span class="tag">Dashboard</span>
+                        <div class="meta"><span class="tag">UX</span>
+                            <div class="meta"><span class="tag">Responsive</span></div>
+                </article>
+            </div>
+        </section>
+        <section id="#deneyim">
+            <div class="section-title">
+                <h2>Deneyim & Eğitim
+                </h2>
+                <p>Özet zaman çizgisi
+                </p>
+            </div>
+            <div class="two">
+                <div class="card item">
+                    <b>Şirket / Rol</b>
+                    <span>2024 — 2026 • İstanbul</span>
+                    <p>Kurumsal web uygulamaları, API tasarımı, performans ve UI geliştirme.
+                    </p>
+                </div>
+                <div class="card item">
+                    <b>Üniversite / Bölüm</b>
+                    <span>2018 — 2022</span>
+                    <p>Bilgisayar / Yazılım odaklı eğitim; projeler ve ekip çalışmaları.</p>
+                </div>
+            </div>
+        </section>
+        <section id="iletisim">
+            <div class="section-title">
+                <h2>İletişim</h2>
+                <p>Hızlı ulaşım</p>
+            </div>
+            <div class="card contact">
+                <div class="lefty">
+                    <b>Bir proje konuşalım.</b>
+                    <span>E-posta ve sosyal hesaplar üzerinden ulaşabilirsin.</span>
+                </div>
+                <div class="cta">
+                    <a href="mailto:ahmetkaya@yobodobo.com" class="btn">Mail At</a>
+                    <a href="" class="btn">LinkedIn</a>
+                    <a href="" class="btn">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
