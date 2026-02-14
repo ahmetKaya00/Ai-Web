@@ -17,6 +17,15 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .todo-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .todo-item.completed .task-title{
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +56,7 @@
             const taskItem = document.createElement("li");
             taskItem.className = "list-group-item todo-item";
             taskItem.innerHTML = `<div>
-                                <span class="text-title"$>${taskInput}</span>
+                                <span class="task-title"$>${taskInput}</span>
                                 <br>
                                 <small class="text-muted">Bitiş Tarihi: ${dueDate}</small>
                 </div>
@@ -58,7 +67,37 @@
                     </div>
                 `;
                 document.getElementById("todoList").appendChild(taskItem);
+                document.getElementById("todoForm").reset();
+                scheduleReminder(taskInput,dueDate);
+        }
+        function completedTask(button){
+            const taskItem = button.closest('.todo-item');
+            taskItem.classList.toggle("completed");
+        }
+        function editTask(button){
+            const taskItem = button.closest('.todo-item');
+            const taskTitle = taskItem.querySelector('.task-title').textContent;
+            const dueDate = taskItem.querySelector('small').textContent.replace('Bitiş Tarihi: ','');
 
+            document.getElementById('taskInput').value = taskTitle;
+            document.getElementById('dueDate').value = dueDate;
+            taskItem.remove();
+
+        }
+        function deleteTask(button){
+            const taskItem = button.closest('.todo-item').remove();
+
+        }
+
+        function scheduleReminder(task,dueDate){
+            const dueTime = new Date(dueDate).getTime();
+            const currentTime = new Date().getTime();
+            const timeout = dueTime - currentTime;
+            if(timeout > 0){
+                setTimeout(()=>{
+                    alert(`Görev Zamanı: ${task}`)
+                },timeout);
+            }
         }
     </script>
 </body>
