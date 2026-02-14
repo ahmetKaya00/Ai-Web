@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="header">Başlık</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <button id="btn">Tıkla</button>
+    <script>
+        let header = document.getElementById("header");
+        let button = document.getElementById("btn");
+        let paragraf = document.querySelector("p");
+
+        console.log(paragraf.textContent)
+
+        header.textContent = "New Header";
+        paragraf.innerHTML="<strong>Selam</strong>"
+
+        header.style.color = "red"
+        header.style.fontSize = "24px"
+
+        let body = document.body
+        let firstChild = body.firstChild
+        console.log(firstChild)
+
+        let newParagraph = document.createElement("p")
+        newParagraph.id = "newParagraph"
+        newParagraph.textContent = "Yeni paragraf"
+        document.body.appendChild(newParagraph)
+
+        button.addEventListener("click",function(){
+            alert("Butona tıklandı")
+        })
+
+        let ul =document.createElement("ul")
+        for(let i = 1; i<=5;i++){
+            let li = document.createElement("li");
+            li.textContent = `Item ${i}`;
+            ul.appendChild(li)
+        }
+        body.appendChild(ul)
+    </script>
+</body>
+</html>
