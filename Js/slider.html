@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .slider-container{
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .slider{
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slider img{
+            width: 100%;
+        }
+        .prev, .next{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .prev{
+            left: 10px;
+        }
+        .next{
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="slider-container">
@@ -15,5 +55,30 @@
         <button class="prev"><</button>
         <button class="next">></button>
     </div>
+    <script>
+        const slider = document.querySelector('.slider');
+        const sldies = document.querySelectorAll('.slider img');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+
+        let currentIndex =0;
+
+        function showSlide(index){
+            if(index >= sldies.length){
+                currentIndex = 0;
+            }else if(index < 0){
+                currentIndex = sldies.length - 1;
+            }else {
+                currentIndex = index;
+            }
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        nextBtn.addEventListener("click",()=>{showSlide(currentIndex + 1)});
+        prevBtn.addEventListener("click",()=>{showSlide(currentIndex - 1)});
+
+        setInterval(()=>{
+            showSlide(currentIndex + 1);
+        },3000);
+    </script>
 </body>
 </html>
