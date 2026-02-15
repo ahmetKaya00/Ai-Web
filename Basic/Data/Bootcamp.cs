@@ -6,7 +6,6 @@ namespace Basic.Data
     {
         [Key]
         public int BootcampId {get;set;}
-        public string? Baslik {get;set;}
-        public ICollection<BootcampKayit> bootcampKayitlari {get;set;} = new List<BootcampKayit>();
+        public string? BootcampName {get;set;}
     }
 }
