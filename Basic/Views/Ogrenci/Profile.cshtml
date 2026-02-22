@@ -1,0 +1,52 @@
+@model Ogrenci
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="text-center mb-3">
+            <img src="~/img/@Model.Image" class="rounded-circle img-thumnail" style="width: 250px; height: 250px" alt="">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Kullanıcı Bilgileri</h4>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">@Model.AdSoyad</h2>
+                    <p class="card-text">Telefon: @Model.Telefon</p>
+                    <p class="card-text">E-Posta: @Model.Eposta</p>
+                </div>
+                <div class="mt-3">
+                    <a asp-controller="Ogrenci" asp-action="Edit" asp-route-id="@Model.OgrenciId" class="btn btn-warning m-2">Edit</a>
+                    <a href="#" onclick="confirmDelete(@Model.OgrenciId)" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(ogrenciId){
+        if(confirm('Öğrenciyi silmek istiyor musunuz ?')){
+            fetch('@Url.Action("Delete","Ogrenci")/'+ogrenciId,{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'aplication/json',
+                    'X-Requested-with':'XMLHttpRequest'
+                }
+            })
+            .then(response=>{
+                if(response.ok){
+                    window.location.href='@Url.Action("Index","Ogrenci")';
+                }else{
+                    alert('Silme işlemi gerçekleştirilmedi.');
+                }
+            })
+            .catch(error=>{
+                console.error("Silme işlemi sırasında hata oluştu.",error);
+                alert('Silme işlemi gerçekleştirilmedi.');
+            })
+        }
+    }
+</script>

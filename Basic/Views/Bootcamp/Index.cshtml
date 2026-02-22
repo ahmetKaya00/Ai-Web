@@ -1,29 +1,29 @@
-@model IEnumerable<Ogrenci>
+@model IEnumerable<Bootcamp>
 
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
     <div>
-        <h3 class="mb-0">Öğrenciler</h3>
+        <h3 class="mb-0">Bootcampler</h3>
         <div class="text-secondary small">Toplam: @Model?.Count()</div>
     </div>
 
-    <a asp-controller="Ogrenci" asp-action="Create" class="btn btn-primary px-3">
-        <i class="bi bi-plus-lg me-1"></i> Öğrenci Ekle
+    <a asp-controller="Bootcamp" asp-action="Create" class="btn btn-primary px-3">
+        <i class="bi bi-plus-lg me-1"></i> Bootcamp Ekle
     </a>
     <hr>
     <div class="col-md-12 mb-3">
-    <form asp-action="Index" asp-controller="Ogrenci" method="get">
+    <form asp-action="Index" asp-controller="Bootcamp" method="get">
         <div class="input-group">
             <input type="text"
                    class="form-control"
                    name="searchString"
                    value="@ViewBag.SearchString"
-                   placeholder="Öğrenci adı ara..." />
+                   placeholder="Bootcamp adı ara..." />
 
             <button type="submit" class="btn btn-secondary">
                 Ara
             </button>
 
-            <a asp-action="Index" asp-controller="Ogrenci"
+            <a asp-action="Index" asp-controller="Bootcamp"
                class="btn btn-outline-secondary">
                 Temizle
             </a>
@@ -33,34 +33,31 @@
 </div>
 
 <div class="row g-3">
-@foreach (var ogrenci in Model)
+@foreach (var Bootcamp in Model)
 {
     <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
         <div class="card student-card h-100 border-0 shadow-sm">
             <div class="ratio ratio-4x3 rounded-top overflow-hidden">
-                <img src="~/img/@ogrenci.Image"
+                <img src="~/img/@Bootcamp.Image"
                      class="w-100 h-100 object-fit-cover"
-                     alt="@ogrenci.AdSoyad" />
+                     alt="@Bootcamp.BootcampName" />
             </div>
 
             <div class="card-body">
                 <div class="d-flex align-items-start justify-content-between gap-2">
                     <div>
-                        <h5 class="card-title mb-1">@ogrenci.AdSoyad</h5>
-                        <div class="text-secondary small">
-                            <i class="bi bi-envelope me-1"></i>@ogrenci.Eposta
-                        </div>
+                        <h5 class="card-title mb-1">@Bootcamp.BootcampName</h5>
                     </div>
 
-                    <span class="badge text-bg-light border">Öğrenci</span>
+                    <span class="badge text-bg-light border">Bootcamp</span>
                 </div>
 
                 <div class="d-flex gap-2 mt-3">
-                    <a asp-controller="Ogrenci" asp-action="Profile" asp-route-id="@ogrenci.OgrenciId"
+                    <a asp-controller="Bootcamp" asp-action="Profile" asp-route-id="@Bootcamp.BootcampId"
                        class="btn btn-outline-secondary btn-sm w-100">
                         Profil
                     </a>
-                    <a asp-controller="Ogrenci" asp-action="Edit" asp-route-id="@ogrenci.OgrenciId"
+                    <a asp-controller="Bootcamp" asp-action="Edit" asp-route-id="@Bootcamp.BootcampId"
                        class="btn btn-outline-primary btn-sm w-100">
                         Düzenle
                     </a>

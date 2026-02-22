@@ -1,0 +1,13 @@
+@model Bootcamp
+<form asp-controller="Bootcamp" asp-action="Edit" method="post" enctype="multipart/form-data">
+<input type="hidden" asp-for="BootcampId">
+    <div class="mb-3">
+        <label asp-for="BootcampName" class="form-label"></label>
+        <input asp-for="BootcampName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <input type="file" name="imageFile" id="imageFile" class="form-control">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

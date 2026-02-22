@@ -4,26 +4,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Basic.Controllers
 {
-    public class OgrenciController : Controller
+    public class BootcampController : Controller
     {
         private readonly DataContext _context;
-        public OgrenciController(DataContext context)
+        public BootcampController(DataContext context)
         {
             _context = context;
         }
         public async Task<IActionResult> Index(string searchString)
         {
-            var ogrenciler = _context.Ogrenciler.AsQueryable();
+            var Bootcampler = _context.Bootcamps.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(searchString))
             {
                 ViewBag.SearchString = searchString;
 
-                ogrenciler = ogrenciler
-                    .Where(o => o.OgrenciAd!.Contains(searchString));
+                Bootcampler = Bootcampler
+                    .Where(o => o.BootcampName!.Contains(searchString));
             }
 
-            return View(await ogrenciler.ToListAsync());
+            return View(await Bootcampler.ToListAsync());
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Basic.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Ogrenci model, IFormFile imageFile)
+        public async Task<IActionResult> Create(Bootcamp model, IFormFile imageFile)
         {
             var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
             var extensions = Path.GetExtension(imageFile.FileName);
@@ -56,9 +56,9 @@ namespace Basic.Controllers
                     }
                 }
                 model.Image = randomFileName;
-                _context.Ogrenciler.Add(model);
+                _context.Bootcamps.Add(model);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Ogrenci");
+                return RedirectToAction("Index", "Bootcamp");
             }
             return View();
         }
@@ -69,7 +69,7 @@ namespace Basic.Controllers
             {
                 return NotFound();
             }
-            var ogr = await _context.Ogrenciler.FindAsync(id);
+            var ogr = await _context.Bootcamps.FindAsync(id);
             if (ogr == null)
             {
                 return NotFound();
@@ -83,7 +83,7 @@ namespace Basic.Controllers
             {
                 return NotFound();
             }
-            var ogr = await _context.Ogrenciler.FindAsync(id);
+            var ogr = await _context.Bootcamps.FindAsync(id);
             if (ogr == null)
             {
                 return NotFound();
@@ -92,9 +92,9 @@ namespace Basic.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Ogrenci model, IFormFile? imageFile)
+        public async Task<IActionResult> Edit(int id, Bootcamp model, IFormFile? imageFile)
         {
-            if (id != model.OgrenciId)
+            if (id != model.BootcampId)
             {
                 return NotFound();
             }
@@ -121,7 +121,7 @@ namespace Basic.Controllers
                 }
                 else
                 {
-                    var existingImage = _context.Ogrenciler.Where(o=>o.OgrenciId == id).Select(o=>o.Image).FirstOrDefault();
+                    var existingImage = _context.Bootcamps.Where(o=>o.BootcampId == id).Select(o=>o.Image).FirstOrDefault();
                     model.Image = existingImage;
                 }
                 _context.Update(model);
@@ -133,12 +133,12 @@ namespace Basic.Controllers
         [HttpPost]
         public async Task<IActionResult>Delete(int id)
         {
-            var ogr = await _context.Ogrenciler.FindAsync(id);
+            var ogr = await _context.Bootcamps.FindAsync(id);
             if(ogr == null)
             {
                 return NotFound(); 
             }
-            _context.Ogrenciler.Remove(ogr);
+            _context.Bootcamps.Remove(ogr);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -28,6 +28,30 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Bootcamp/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXAvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Bootcamp/edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXAvZWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Bootcamp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXAvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Bootcamp/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXAvUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/BootcampKayit/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXBLYXlpdC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/BootcampKayit/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9vdGNhbXBLYXlpdC9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Ogrenci/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Ogrenci/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9Qcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ahmetkaya/Documents/GitHub/Ai-Web/Basic/Views/Shared/Error.cshtml]
