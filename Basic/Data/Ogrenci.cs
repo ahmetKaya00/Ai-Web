@@ -15,6 +15,7 @@ namespace Basic.Data
         public string? Image {get;set;}
         public string? Telefon {get;set;}
         public string? Eposta {get;set;}
+        public ICollection<BootcampKayit> BootcampKayitlar {get;set;} = new List<BootcampKayit>();
 
     }
 }

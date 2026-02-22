@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Basic.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,9 +13,10 @@ namespace Basic.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var BootcampKayitlari = await _context.BootcampKayit.Include(x=>x.Bootcamp).Include(x=>x.Ogrenci).ToListAsync();
+            return View(BootcampKayitlari);
         }
 
         public async Task<IActionResult> Create()

@@ -1,4 +1,5 @@
 using Basic.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,19 +12,28 @@ builder.Services.AddDbContext<DataContext>(options =>
    var connectionString = config.GetConnectionString("database"); 
    options.UseSqlite(connectionString);
 });
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
+{
+    opt.Password.RequireDigit = false;
+    opt.Password.RequiredLength = 6;
+    opt.User.RequireUniqueEmail = true;
+    opt.Lockout.MaxFailedAccessAttempts = 5;
+}).AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

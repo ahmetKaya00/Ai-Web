@@ -69,7 +69,7 @@ namespace Basic.Controllers
             {
                 return NotFound();
             }
-            var ogr = await _context.Bootcamps.FindAsync(id);
+            var ogr = await _context.Bootcamps.Include(o=>o.BootcampKayitlar).ThenInclude(b=>b.Ogrenci).FirstOrDefaultAsync(o=>o.BootcampId == id);
             if (ogr == null)
             {
                 return NotFound();

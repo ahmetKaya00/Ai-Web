@@ -20,6 +20,19 @@
                     <a href="#" onclick="confirmDelete(@Model.BootcampId)" class="btn btn-danger">Delete</a>
                 </div>
             </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4 class="card-title">Kayıtlı Kullanıcılar</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                            @foreach (var item in Model.BootcampKayitlar)
+                            {
+                                <li>@item.Ogrenci.AdSoyad</li>
+                            }
+                        </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
