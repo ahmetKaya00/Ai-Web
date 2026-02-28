@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 using Basic.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Basic.Controllers
 {
+    [Authorize]
     public class BootcampKayitController : Controller
     {
         private readonly DataContext _context;

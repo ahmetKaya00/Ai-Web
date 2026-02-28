@@ -1,4 +1,5 @@
 using Basic.Data;
+using Basic.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
     opt.User.RequireUniqueEmail = true;
     opt.Lockout.MaxFailedAccessAttempts = 5;
 }).AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
-
+builder.Services.AddSingleton(new HttpClient());
+builder.Services.AddScoped<GeminiChatService>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

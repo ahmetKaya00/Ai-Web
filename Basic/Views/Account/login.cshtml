@@ -1,0 +1,105 @@
+@model Loginvm
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f9;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 80px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        transition: border 0.2s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #2563eb;
+    }
+
+    .remember {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    .validation {
+        color: #dc2626;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #2563eb;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-login:hover {
+        background: #1e40af;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Giriş Yap</h2>
+
+    <form asp-action="Login" asp-controller="Account" method="post">
+        <div asp-validation-summary="All" class="validation"></div>
+
+        <div class="form-group">
+            <label asp-for="Email">E-Posta</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Parola</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password" class="validation"></span>
+        </div>
+
+        <div class="remember">
+            <input asp-for="RememberMe" />
+            <label asp-for="RememberMe">Beni Hatırla</label>
+        </div>
+
+        <button type="submit" class="btn-login">Giriş Yap</button>
+    </form>
+</div>

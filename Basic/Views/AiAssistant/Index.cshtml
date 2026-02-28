@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "AI Asistan";
+}
+
+<div style="max-width:900px;margin:40px auto;font-family:system-ui;">
+    <h2>Gemini AI Asistan</h2>
+
+    <div id="chat"
+         style="border:1px solid #ddd;border-radius:12px;padding:16px;min-height:280px;max-height:520px;overflow:auto;background:#fafafa;">
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:12px;">
+        <input id="msg" type="text" placeholder="Sorunu yaz..."
+               style="flex:1;padding:12px 14px;border-radius:10px;border:1px solid #ccc;" />
+        <button id="send"
+                style="padding:12px 16px;border-radius:10px;border:0;background:#111;color:#fff;cursor:pointer;">
+            Gönder
+        </button>
+    </div>
+
+    <p id="status" style="color:#777;margin-top:10px;"></p>
+</div>
+
+<script>
+    const chat = document.getElementById("chat");
+    const msg = document.getElementById("msg");
+    const send = document.getElementById("send");
+    const statusEl = document.getElementById("status");
+
+    function bubble(text, who) {
+        const wrap = document.createElement("div");
+        wrap.style.display = "flex";
+        wrap.style.justifyContent = who === "user" ? "flex-end" : "flex-start";
+        wrap.style.margin = "8px 0";
+
+        const b = document.createElement("div");
+        b.style.maxWidth = "78%";
+        b.style.padding = "10px 12px";
+        b.style.borderRadius = "12px";
+        b.style.whiteSpace = "pre-wrap";
+        b.style.lineHeight = "1.4";
+        b.style.background = who === "user" ? "#111" : "#fff";
+        b.style.color = who === "user" ? "#fff" : "#111";
+        b.style.border = who === "user" ? "0" : "1px solid #e5e5e5";
+        b.textContent = text;
+
+        wrap.appendChild(b);
+        chat.appendChild(wrap);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function ask() {
+        const text = msg.value.trim();
+        if (!text) return;
+
+        msg.value = "";
+        bubble(text, "user");
+        statusEl.textContent = "Yanıt hazırlanıyor...";
+
+        try {
+            const res = await fetch("@Url.Action("Ask","AiAssistant")", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || "İstek başarısız");
+
+            bubble(data.answer || "(boş cevap)", "ai");
+            statusEl.textContent = "";
+        } catch (e) {
+            statusEl.textContent = "Hata: " + e.message;
+        }
+    }
+
+    send.addEventListener("click", ask);
+    msg.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") ask();
+    });
+</script> 

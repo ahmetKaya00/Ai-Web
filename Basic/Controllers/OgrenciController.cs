@@ -1,9 +1,11 @@
 using Basic.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Basic.Controllers
 {
+    [Authorize]
     public class OgrenciController : Controller
     {
         private readonly DataContext _context;

@@ -1,0 +1,100 @@
+@model RegisterVm
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f9;
+    }
+
+    .register-container {
+        max-width: 400px;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .register-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .form-group input {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        transition: border 0.2s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #2563eb;
+    }
+
+    .validation {
+        color: #dc2626;
+        font-size: 13px;
+    }
+
+    .btn-register {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #2563eb;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-register:hover {
+        background: #1e40af;
+    }
+</style>
+
+<div class="register-container">
+    <h2>Kayıt Ol</h2>
+
+    <form asp-action="Register" asp-controller="Account" method="post">
+        <div asp-validation-summary="All" class="validation"></div>
+        <div class="form-group">
+            <label asp-for="FullName">Ad Soyad</label>
+            <input asp-for="FullName" />
+            <div asp-validation-for="FullName" class="validation"></div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">E-Posta</label>
+            <input asp-for="Email" />
+            <div asp-validation-for="Email" class="validation"></div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Parola</label>
+            <input asp-for="Password" type="password" />
+            <div asp-validation-for="Password" class="validation"></div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Parola Tekrar</label>
+            <input asp-for="ConfirmPassword" type="password" />
+            <div asp-validation-for="ConfirmPassword" class="validation"></div>
+        </div>
+
+        <button type="submit" class="btn-register">Kayıt Ol</button>
+    </form>
+</div>
